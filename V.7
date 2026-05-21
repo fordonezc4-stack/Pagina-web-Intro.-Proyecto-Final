@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lógica de Sistemas - UML</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #eef2f7;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 42px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        nav {
+            background: #222;
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #2a5298;
+            border-radius: 5px;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            font-size: 32px;
+            color: #1e3c72;
+        }
+
+        .intro p {
+            margin-top: 15px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .tarjeta {
+            background: white;
+            color: black;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid black;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-8px);
+            background: #f5f5f5;
+        }
+
+        .tarjeta h3 {
+            color: black;
+            margin-bottom: 15px;
+        }
+
+        .tarjeta p, .tarjeta ul {
+            line-height: 1.6;
+        }
+
+        .tarjeta ul {
+            padding-left: 20px;
+        }
+
+        .tarjeta img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .boton-inicio {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1e3c72;
+            color: white;
+            padding: 15px 18px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 22px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .boton-inicio:hover {
+            background: #2a5298;
+            transform: scale(1.1);
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0,0,0,0.8);
+        }
+
+        .modal-contenido {
+            background: white;
+            margin: auto;
+            padding: 25px;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 15px;
+            text-align: center;
+            animation: aparecer 0.3s ease;
+        }
+
+        .modal-contenido img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cerrar {
+            float: right;
+            font-size: 30px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .cerrar:hover {
+            color: red;
+        }
+
+        @keyframes aparecer {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body id="inicio">
+
+<header>
+    <h1>Lógica de Sistemas</h1>
+    <p>Introducción al Lenguaje Unificado de Modelado (UML)</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#diagramas">Diagramas</a></li>
+        <li><a href="#ejemplos">Ejemplos</a></li>
+        <li><a href="#footer">Acerca de</a></li>
+    </ul>
+</nav>
+
+<div class="contenedor">
+
+    <section class="intro">
+        <h2>¿Qué es UML?</h2>
+        <p>
+            UML (Unified Modeling Language) es un lenguaje visual utilizado para diseñar,
+            modelar y documentar sistemas de software antes de su desarrollo.
+        </p>
+        <p>
+            Es una herramienta fundamental en lógica de sistemas porque permite representar
+            gráficamente la estructura y funcionamiento de proyectos informáticos.
+        </p>
+    </section>
+
+    <section class="tarjetas">
+
+        <div class="tarjeta">
+            <h3>¿Para qué sirve?</h3>
+            <p>
+                UML ayuda a representar gráficamente procesos, estructuras y comportamientos
+                de un sistema para facilitar su comprensión y desarrollo.
+            </p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Tipos de diagramas</h3>
+            <ul>
+                <li>Diagrama de uso</li>
+                <li>Diagrama de actividades</li>
+                <li>Diagrama de clases</li>
+                <li>Diagrama de objetos</li>
+                <li>Diagrama de secuencia</li>
+                <li>Diagrama de estados</li>
+            </ul>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Más usados</h3>
+            <ul>
+                <li>Diagrama de usos</li>
+                <li>Diagrama de actividades</li>
+                <li>Diagrama de secuencias</li>
+            </ul>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Importancia</h3>
+            <p>
+                Permite planificar mejor los proyectos, detectar errores antes de programar
+                y mejorar la comunicación entre desarrolladores.
+            </p>
+        </div>
+
+    </section>
+
+</div>
+
+<section id="diagramas" class="contenedor">
+
+    <div class="intro">
+        <h2>Diagramas UML</h2>
+        <p>Los diagramas UML permiten representar visualmente diferentes aspectos de un sistema.</p>
+    </div>
+
+    <section class="tarjetas">
+
+        <div class="tarjeta">
+            <h3>Diagrama de Casos de Uso</h3>
+            <p>Representa las funcionalidades del sistema desde la perspectiva del usuario.</p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Diagrama de Actividades</h3>
+            <p>Describe el flujo de trabajo y los procesos del sistema paso a paso.</p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Diagrama de Clases</h3>
+            <p>Muestra clases, atributos, métodos y relaciones dentro del sistema.</p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Diagrama de Objetos</h3>
+            <p>Representa instancias reales de clases y su interacción.</p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Diagrama de Secuencia</h3>
+            <p>Muestra cómo interactúan los objetos en orden temporal.</p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Diagrama de Estados</h3>
+            <p>Representa los diferentes estados de un objeto durante su ciclo de vida.</p>
+        </div>
+
+    </section>
+
+</section>
+
+<section id="ejemplos" class="contenedor">
+
+    <div class="intro">
+        <h2>Ejemplos de Diagramas UML</h2>
+        <p>Haz clic sobre cualquier imagen para ver más información.</p>
+    </div>
+
+    <section class="tarjetas">
+
+        <div class="tarjeta">
+            <h3>Casos de Uso</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/UML_use_case_diagram.svg" alt="Caso de Uso">
+        </div>
+
+        <div class="tarjeta">
+            <h3>Actividades</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Activity_conducting.svg" alt="Actividad">
+        </div>
+
+        <div class="tarjeta">
+            <h3>Clases</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Class_diagram.jpg" alt="Clases">
+        </div>
+
+        <div class="tarjeta">
+            <h3>Objetos</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Object_diagram_example.png" alt="Objetos">
+        </div>
+
+        <div class="tarjeta">
+            <h3>Secuencia</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/CheckEmail.svg" alt="Secuencia">
+        </div>
+
+        <div class="tarjeta">
+            <h3>Estados</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/UML_state_machine.svg" alt="Estados">
+        </div>
+
+    </section>
+
+</section>
+
+<footer id="footer">
+    <p>Proyecto de Lógica de Sistemas | UMG 2026</p>
+</footer>
+
+<a href="#inicio" class="boton-inicio">↑</a>
+
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-contenido">
+
+        <span class="cerrar">&times;</span>
+
+        <img id="modal-img" src="" alt="Imagen UML">
+
+        <h2 id="modal-titulo"></h2>
+
+        <p id="modal-texto"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const modalTitulo = document.getElementById("modal-titulo");
+    const modalTexto = document.getElementById("modal-texto");
+    const cerrar = document.querySelector(".cerrar");
+
+    const imagenes = document.querySelectorAll("#ejemplos .tarjeta img");
+
+    const infoDiagramas = [
+
+        {
+            titulo: "Diagrama de Casos de Uso",
+            texto: "Representa las funcionalidades principales del sistema y cómo interactúan los usuarios con él."
+        },
+
+        {
+            titulo: "Diagrama de Actividades",
+            texto: "Muestra el flujo de procesos y actividades paso a paso dentro de un sistema."
+        },
+
+        {
+            titulo: "Diagrama de Clases",
+            texto: "Describe la estructura del sistema mediante clases, atributos, métodos y relaciones."
+        },
+
+        {
+            titulo: "Diagrama de Objetos",
+            texto: "Representa objetos reales y cómo se relacionan entre sí en un momento específico."
+        },
+
+        {
+            titulo: "Diagrama de Secuencia",
+            texto: "Muestra la interacción entre objetos en orden cronológico."
+        },
+
+        {
+            titulo: "Diagrama de Estados",
+            texto: "Representa los diferentes estados por los que pasa un objeto durante su ciclo de vida."
+        }
+
+    ];
+
+    imagenes.forEach((img, index) => {
+
+        img.addEventListener("click", () => {
+
+            modal.style.display = "block";
+
+            modalImg.src = img.src;
+
+            modalTitulo.textContent = infoDiagramas[index].titulo;
+
+            modalTexto.textContent = infoDiagramas[index].texto;
+
+        });
+
+    });
+
+    cerrar.onclick = () => {
+        modal.style.display = "none";
+    }
+
+    window.onclick = (e) => {
+
+        if (e.target == modal) {
+
+            modal.style.display = "none";
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

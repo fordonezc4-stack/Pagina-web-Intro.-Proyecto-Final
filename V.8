@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UML</title>
+
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background:
+                linear-gradient(135deg,
+                    #0f0f0f,
+                    #1a1a1a,
+                    #222222);
+
+            color: white;
+            overflow-x: hidden;
+        }
+
+   
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#ffcc00, #ff8800);
+            border-radius: 20px;
+        }
+
+   
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 50px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffcc00;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            transition: .3s;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+  
+
+        .hero {
+            height: 100vh;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, .8),
+                    rgba(0, 0, 0, .8)),
+                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3');
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 90px;
+            font-weight: 800;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 1000px;
+            margin: auto;
+            font-size: 24px;
+            line-height: 1.8;
+            color: #f5f5f5;
+        }
+
+        .hero button {
+            margin-top: 40px;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg,
+                    #ffcc00,
+                    #ff8800);
+
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .hero button:hover {
+            transform: scale(1.1);
+        }
+
+      
+
+        .contenedor {
+            width: 92%;
+            max-width: 1400px;
+            margin: auto;
+            padding: 100px 0;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .titulo h2 {
+            font-size: 60px;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .titulo p {
+            font-size: 22px;
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+      
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,
+                    minmax(320px, 1fr));
+
+            gap: 35px;
+        }
+
+        .tarjeta {
+            background:
+                rgba(255, 255, 255, 0.06);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.1);
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 25px;
+
+            padding: 35px;
+
+            transition: .5s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .tarjeta:hover {
+            transform:
+                translateY(-15px)
+                scale(1.03);
+
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, .5);
+        }
+
+        .tarjeta i {
+            font-size: 55px;
+            color: #ffcc00;
+            margin-bottom: 25px;
+        }
+
+        .tarjeta h3 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .tarjeta p,
+        .tarjeta li {
+            line-height: 1.9;
+            color: #f0f0f0;
+            font-size: 17px;
+        }
+
+        .tarjeta ul {
+            padding-left: 20px;
+        }
+
+        .tarjeta img {
+            width: 100%;
+            margin-top: 25px;
+            border-radius: 15px;
+            transition: .4s;
+        }
+
+        .tarjeta img:hover {
+            transform: scale(1.05);
+        }
+
+     
+
+        .timeline {
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background: #ffcc00;
+            left: 50%;
+        }
+
+        .evento {
+            width: 45%;
+            padding: 30px;
+            margin-bottom: 50px;
+
+            background:
+                rgba(255, 255, 255, 0.05);
+
+            border-radius: 20px;
+
+            position: relative;
+        }
+
+        .evento:nth-child(odd) {
+            left: 0;
+        }
+
+        .evento:nth-child(even) {
+            left: 55%;
+        }
+
+        .evento h3 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 30px;
+        }
+
+        .evento p {
+            line-height: 1.8;
+        }
+
+        /* MERMAID */
+
+        .mermaid {
+            background: white;
+            color: black;
+            border-radius: 20px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+
+        .quiz {
+            text-align: center;
+        }
+
+        .quiz button {
+            margin: 10px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            background:
+                linear-gradient(45deg,
+                    #ffcc00,
+                    #ff8800);
+
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .quiz button:hover {
+            transform: scale(1.08);
+        }
+
+  
+        footer {
+            background: black;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        footer h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .boton {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                linear-gradient(45deg,
+                    #ffcc00,
+                    #ff8800);
+
+            color: black;
+            font-size: 25px;
+            text-decoration: none;
+            transition: .4s;
+        }
+
+        .boton:hover {
+            transform: scale(1.1);
+        }
+
+        @media(max-width:900px) {
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .evento {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 40px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <nav>
+
+        <div class="logo">
+            UML 
+        </div>
+
+        <ul>
+
+            <li><a href="#intro">Inicio</a></li>
+            <li><a href="#diagramas">Diagramas</a></li>
+            <li><a href="#relaciones">Relaciones</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#ejemplos">Ejemplos</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+
+        </ul>
+
+    </nav>
+
+    <section class="hero" id="intro">
+
+        <div data-aos="zoom-in">
+
+            <h1>UML</h1>
+
+            <p>
+
+                Plataforma sobre UML
+                enfocada en diagramas, modelado,
+                relaciones, arquitectura de software,
+                análisis de sistemas y representación
+                
+
+            </p>
+
+            <button onclick="scrollSection()">
+                EXPLORAR UML
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="contenedor">
+
+        <div class="titulo">
+
+            <h2>¿Qué es UML?</h2>
+
+            <p>
+
+                UML (Unified Modeling Language)
+                es un lenguaje de modelado visual
+                utilizado en ingeniería de software
+                para diseñar, visualizar, documentar
+                y construir sistemas complejos.
+
+            </p>
+
+        </div>
+
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+
+                <i class="fa-solid fa-diagram-project"></i>
+
+                <h3>Objetivo Principal</h3>
+
+                <p>
+
+                    UML busca facilitar la representación
+                    gráfica de sistemas antes de ser
+                    programados, permitiendo detectar
+                    errores, mejorar la organización y
+                    optimizar la comunicación entre equipos.
+
+                </p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <i class="fa-solid fa-code"></i>
+
+                <h3>Ventajas de UML</h3>
+
+                <ul>
+
+                    <li>Mejor documentación</li>
+                    <li>Mayor planificación</li>
+                    <li>Visualización clara</li>
+                    <li>Reduce errores</li>
+                    <li>Facilita mantenimiento</li>
+                    <li>Comunicación efectiva</li>
+
+                </ul>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <i class="fa-solid fa-laptop-code"></i>
+
+                <h3>Importancia</h3>
+
+                <p>
+
+                    UML es considerado uno de los estándares
+                    más importantes de la ingeniería de software
+                    porque ayuda a representar arquitecturas,
+                    procesos, relaciones y comportamientos
+                    complejos de forma visual.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+  
+
+    <section class="contenedor" id="diagramas">
+
+        <div class="titulo">
+
+            <h2>Diagramas UML</h2>
+
+            <p>
+
+                UML contiene múltiples diagramas
+                divididos en diagramas estructurales
+                y diagramas de comportamiento.
+
+            </p>
+
+        </div>
+
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+
+                <h3>Casos de Uso</h3>
+
+                <p>
+
+                    Representa las funcionalidades
+                    principales del sistema desde la
+                    perspectiva del usuario.
+
+                </p>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/UML_use_case_diagram.svg">
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Diagrama de Clases</h3>
+
+                <p>
+
+                    Describe clases, atributos,
+                    métodos y relaciones del sistema.
+
+                </p>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Class_diagram.jpg">
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Diagrama de Secuencia</h3>
+
+                <p>
+
+                    Muestra interacción temporal
+                    entre objetos y mensajes.
+
+                </p>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/CheckEmail.svg">
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Diagrama de Actividades</h3>
+
+                <p>
+
+                    Modela flujos de trabajo,
+                    procesos y actividades.
+
+                </p>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Activity_conducting.svg">
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Diagrama de Estados</h3>
+
+                <p>
+
+                    Representa estados y transiciones
+                    de objetos dentro del sistema.
+
+                </p>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/UML_state_machine.svg">
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Diagrama de Componentes</h3>
+
+                <p>
+
+                    Describe la arquitectura modular
+                    y organización de componentes.
+
+                </p>
+
+                <img src="https://cdn-images.visual-paradigm.com/guide/uml/uml-component-diagram-tutorial/01-component-diagram-example.png">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="contenedor" id="relaciones">
+
+        <div class="titulo">
+
+            <h2>Relaciones UML</h2>
+
+            <p>
+
+                Las relaciones UML permiten conectar
+                clases, objetos y componentes dentro
+                de un sistema orientado a objetos.
+
+            </p>
+
+        </div>
+
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+
+                <h3>Herencia</h3>
+
+                <p>
+
+                    La herencia permite que una clase
+                    herede atributos y métodos de otra.
+                    Facilita reutilización de código.
+
+                </p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Asociación</h3>
+
+                <p>
+
+                    Representa una relación estructural
+                    entre clases donde los objetos están
+                    conectados entre sí.
+
+                </p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Dependencia</h3>
+
+                <p>
+
+                    Ocurre cuando una clase utiliza
+                    temporalmente otra clase.
+
+                </p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Agregación</h3>
+
+                <p>
+
+                    Relación todo-parte donde un objeto
+                    puede existir independientemente.
+
+                </p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Composición</h3>
+
+                <p>
+
+                    Relación fuerte donde los objetos
+                    dependen completamente del objeto principal.
+
+                </p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Realización</h3>
+
+                <p>
+
+                    Representa implementación de interfaces
+                    dentro de programación orientada a objetos.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+  
+    <section class="contenedor" id="historia">
+
+        <div class="titulo">
+
+            <h2>Historia Completa de UML</h2>
+
+        </div>
+
+        <div class="timeline">
+
+            <div class="evento">
+
+                <h3>1994</h3>
+
+                <p>
+
+                    Grady Booch, James Rumbaugh y Ivar Jacobson
+                    comienzan el desarrollo de UML con el objetivo
+                    de unificar distintos métodos de modelado.
+
+                </p>
+
+            </div>
+
+            <div class="evento">
+
+                <h3>1995</h3>
+
+                <p>
+
+                    Se publica UML 0.8 como primer borrador
+                    oficial para estandarizar diagramas
+                    y modelado visual.
+
+                </p>
+
+            </div>
+
+            <div class="evento">
+
+                <h3>1997</h3>
+
+                <p>
+
+                    OMG (Object Management Group)
+                    adopta UML oficialmente como estándar
+                    internacional para modelado de software.
+
+                </p>
+
+            </div>
+
+            <div class="evento">
+
+                <h3>2005</h3>
+
+                <p>
+
+                    UML 2.0 introduce mejoras importantes
+                    en diagramas de interacción, componentes
+                    y arquitectura de sistemas.
+
+                </p>
+
+            </div>
+
+            <div class="evento">
+
+                <h3>Actualidad</h3>
+
+                <p>
+
+                    UML sigue siendo utilizado en desarrollo
+                    de software, análisis empresarial,
+                    arquitectura informática e ingeniería
+                    de sistemas complejos.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contenedor" id="ejemplos">
+
+        <div class="titulo">
+
+            <h2>Ejemplos UML Reales</h2>
+
+            <p>
+
+                Casos reales representados mediante
+                diagramas dinámicos UML
+
+            </p>
+
+        </div>
+
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+
+                <h3>Sistema Bancario</h3>
+
+                <div class="mermaid">
+
+                    graph TD
+
+                    Cliente --> RetirarDinero
+                    Cliente --> Depositar
+                    Cliente --> Transferir
+                    Cliente --> ConsultarSaldo
+
+                </div>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Sistema Hospitalario</h3>
+
+                <div class="mermaid">
+
+                    graph TD
+
+                    Paciente --> Cita
+                    Doctor --> Diagnostico
+                    Enfermera --> Medicamento
+
+                </div>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Ecommerce</h3>
+
+                <div class="mermaid">
+
+                    graph TD
+
+                    Cliente --> Carrito
+                    Carrito --> Pago
+                    Pago --> Factura
+
+                </div>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>Diagrama de Clases</h3>
+
+                <div class="mermaid">
+
+                    classDiagram
+
+                    class Usuario{
+                    +String nombre
+                    +login()
+                    }
+
+                    class Admin{
+                    +gestionarUsuarios()
+                    }
+
+                    Usuario <|-- Admin
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contenedor quiz" id="quiz">
+
+        <div class="titulo">
+
+            <h2>Quiz UML</h2>
+
+        </div>
+
+        <h3>
+
+            ¿Qué diagrama UML representa
+            interacción temporal entre objetos?
+
+        </h3>
+
+        <br>
+
+        <button onclick="correcto()">
+            Diagrama de Secuencia
+        </button>
+
+        <button onclick="incorrecto()">
+            Diagrama de Clases
+        </button>
+
+        <button onclick="incorrecto()">
+            Diagrama de Estados
+        </button>
+
+    </section>
+
+  
+    <footer>
+
+        <h2>UML</h2>
+
+        <p>
+
+            Página WEB sobre UML |
+            Ingeniería de Sistemas 2026
+
+        </p>
+
+    </footer>
+
+
+    <a href="#intro" class="boton">
+        ↑
+    </a>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+
+        AOS.init();
+
+        mermaid.initialize({
+            startOnLoad: true
+        });
+
+        function correcto() {
+
+            alert("✅ Correcto.");
+
+        }
+
+        function incorrecto() {
+
+            alert("❌ Incorrecto.");
+
+        }
+
+        function scrollSection() {
+
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
